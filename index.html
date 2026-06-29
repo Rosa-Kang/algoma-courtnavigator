@@ -64,18 +64,48 @@ header.site{display:flex;align-items:center;gap:26px;padding:16px 40px;backgroun
 .steps-intro{margin:16px auto 0;font-size:15px;line-height:1.62;color:#6f7268;max-width:540px;}
 
 .tl{position:relative;max-width:900px;margin:20px auto 0;}
-.tl-row{display:grid;grid-template-columns:1fr 72px 1fr;align-items:stretch;min-height:158px;}
-.tl-side{display:flex;}
+.tl-row{display:grid;grid-template-columns:1fr 72px 1fr;align-items:stretch;padding:28px 0;}
+.tl-row:first-child{padding-top:4px;}
+.tl-row:last-child{padding-bottom:4px;}
+.tl-side{display:flex;align-items:flex-start;}
 .tl-l{justify-content:flex-end;}
 .tl-r{justify-content:flex-start;}
-.tl-card{display:flex;flex-direction:column;width:100%;max-width:336px;background:transparent;border:0;cursor:pointer;padding:2px 0 0;text-align:left;}
+.tl-card{display:flex;flex-direction:column;width:100%;max-width:336px;cursor:pointer;text-align:left;}
 .tl-l .tl-card{padding-right:38px;}
 .tl-r .tl-card{padding-left:38px;}
 .tl-phase{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--c);opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
 .tl-title{font-family:'Source Serif 4',serif;font-weight:600;font-size:21px;color:#262b22;margin:7px 0 8px;letter-spacing:-.01em;line-height:1.2;opacity:0;transform:translateY(16px);transition:color .16s ease,opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
 .tl-desc{font-size:14px;line-height:1.6;color:#6b6f64;opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.22,.61,.36,1),transform .55s cubic-bezier(.22,.61,.36,1);}
 .tl-card:hover .tl-title{color:var(--c);}
-.tl-card:focus-visible{outline:3px solid var(--c);outline-offset:5px;border-radius:8px;}
+.tl-card:focus-visible{outline:3px solid var(--c);outline-offset:5px;border-radius:12px;}
+.tl-card{
+  border-radius:12px;
+  padding:18px 20px;
+  margin:-18px -20px;
+  border:1.5px solid transparent;
+  background:transparent;
+  box-shadow:none;
+  align-self:start;
+  transition:
+    background .5s cubic-bezier(.4,0,.2,1),
+    border-color .5s cubic-bezier(.4,0,.2,1),
+    box-shadow .26s ease,
+    transform .28s cubic-bezier(.22,.61,.36,1);
+}
+.tl-card[data-rv]{
+  background:#f4f1ea;
+  border-color:rgba(31,46,38,.11);
+  transition:
+    background .6s .05s cubic-bezier(.4,0,.2,1),
+    border-color .6s .05s cubic-bezier(.4,0,.2,1),
+    box-shadow .26s ease,
+    transform .28s cubic-bezier(.22,.61,.36,1);
+}
+.tl-card:hover{
+  box-shadow:0 10px 32px -10px rgba(31,46,38,.22);
+  transform:translateY(-5px);
+  border-color:rgba(31,46,38,.18);
+}
 
 .tl-spine{position:relative;text-align:center;}
 .tl-badge{position:relative;z-index:2;width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;
@@ -86,10 +116,10 @@ header.site{display:flex;align-items:center;gap:26px;padding:16px 40px;backgroun
 .tl-line{position:absolute;left:50%;top:21px;width:3px;margin-left:-1.5px;border-radius:2px;
   background:linear-gradient(var(--c), var(--cn));
   height:0;transition:height .55s cubic-bezier(.4,0,.2,1);}
-.tl-line[data-rv]{height:calc(100% - 21px);}
-.tl-card[data-rv] .tl-phase{opacity:.95;transform:none;transition-delay:0s;}
-.tl-card[data-rv] .tl-title{opacity:1;transform:none;transition-delay:.16s;}
-.tl-card[data-rv] .tl-desc{opacity:1;transform:none;transition-delay:.32s;}
+.tl-line[data-rv]{height:var(--line-h, calc(100% - 21px));}
+.tl-card[data-rv] .tl-phase{opacity:.95;transform:none;transition-delay:.1s;}
+.tl-card[data-rv] .tl-title{opacity:1;transform:none;transition-delay:.24s;}
+.tl-card[data-rv] .tl-desc{opacity:1;transform:none;transition-delay:.38s;}
 
 footer.site{background:#2f5d50;color:#cfe0d8;padding:26px 64px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
 footer.site .disc{font-size:13px;line-height:1.5;max-width:680px;}
@@ -133,6 +163,11 @@ footer.site .links{display:flex;gap:24px;font-size:13px;font-weight:500;}
 @keyframes scOverlayIn{from{opacity:0}to{opacity:1}}
 @keyframes scModalIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes scRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mdFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes mdRiseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.md-anim{opacity:0;}
+.md-anim.md-fade{animation:mdFadeIn .6s cubic-bezier(.4,0,.2,1) forwards;}
+.md-anim.md-rise{animation:mdRiseIn .55s cubic-bezier(.22,.61,.36,1) forwards;}
 .overlay{position:fixed;inset:0;background:rgba(26,31,24,.62);display:flex;align-items:flex-start;justify-content:center;padding:48px 24px;z-index:100;animation:scOverlayIn .18s ease;overflow:auto;}
 .overlay[hidden]{display:none;}
 .modal{width:760px;max-width:100%;background:#f4f1ea;border-radius:22px;overflow:hidden;box-shadow:0 50px 110px -30px rgba(0,0,0,.6);animation:scModalIn .26s cubic-bezier(.2,.8,.25,1);}
@@ -145,7 +180,7 @@ footer.site .links{display:flex;gap:24px;font-size:13px;font-weight:500;}
 .m-ttitle{font-family:'Source Serif 4',serif;font-weight:600;font-size:25px;letter-spacing:-.01em;margin-top:3px;}
 .m-plain{margin:16px 0 0;font-size:15px;line-height:1.55;color:#dfeae3;max-width:560px;}
 .m-body{padding:28px 34px 34px;}
-.m-sec{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a8f7e;font-weight:700;margin-bottom:10px;}
+.m-sec{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a8f7e;font-weight:700;margin-bottom:10px;margin-top:26px;}.m-body>.m-sec:first-child{margin-top:0;}
 .m-video{position:relative;border-radius:14px;overflow:hidden;background:repeating-linear-gradient(135deg,#e7e1d2 0 14px,#ece6d8 14px 28px);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border:1px solid #e2ddcf;margin-bottom:8px;}
 .m-play{width:62px;height:62px;border-radius:50%;background:#fbf9f5;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -10px rgba(31,46,38,.5);}
 .m-vtag{position:absolute;left:14px;bottom:12px;background:rgba(28,33,26,.7);color:#fff;font-size:12px;padding:4px 9px;border-radius:6px;font-family:ui-monospace,monospace;}
@@ -165,7 +200,7 @@ footer.site .links{display:flex;gap:24px;font-size:13px;font-weight:500;}
 .m-taz{width:30px;height:30px;border-radius:8px;background:#f3e3d9;color:#c4623f;display:flex;align-items:center;justify-content:center;font-family:'Source Serif 4',serif;font-weight:700;font-size:15px;flex:0 0 auto;}
 .m-tterm{font-weight:700;font-size:14.5px;color:#23271f;}
 .m-tdef{display:block;font-size:13.5px;color:#5c6157;line-height:1.5;margin-top:2px;}
-.m-refs{display:flex;flex-direction:column;gap:9px;}
+.m-refs{display:flex;flex-direction:column;gap:9px;margin-bottom:26px;}
 .m-ref{display:flex;align-items:center;gap:14px;text-decoration:none;background:#2f5d50;border-radius:12px;padding:14px 18px;}
 .m-ref:hover{background:#244a40;}
 .m-rn{display:block;font-size:14.5px;font-weight:700;color:#fff;}
@@ -218,7 +253,7 @@ footer.site .links{display:flex;gap:24px;font-size:13px;font-weight:500;}
           <div class="steps-head">
             <div class="kicker">The path through the system</div>
             <h3>Preparing for the road ahead, step by step</h3>
-            <p class="steps-intro">The court process can feel overwhelming, but every step has a name, a purpose, and people who can help. Here is what to expect from your first contact with police through to life after a sentence.</p>
+            <p class="steps-intro">The court process has eight stages, from your first contact with police to life after a sentence. Each one comes with support. You do not have to figure it out alone.</p>
           </div>
           <div class="tl" id="timeline">
           <div class="tl-row">
@@ -466,12 +501,10 @@ function openStep(i){
       <div class="m-vtitle">${s.vTitle}</div>
       <div class="m-sec">What this means</div>
       ${s.body.map(p=>`<p class="m-para">${p}</p>`).join('')}
-      <div class="m-mh">
-        <div class="m-mhic"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 21s-7.5-4.6-9.7-9.2C.7 8.3 2.5 5 6 5c2 0 3.2 1.1 4 2.3C10.8 6.1 12 5 14 5c3.5 0 5.3 3.3 3.7 6.8C19.5 16.4 12 21 12 21z"></path></svg></div>
-        <div>
-          <div class="m-mht">Feeling overwhelmed? You're not alone.</div>
-          <div class="m-mhd">${s.mh} Reach <strong>CMHA Algoma</strong> for support, or call the <strong>24/7 crisis line</strong> any time.</div>
-        </div>
+
+      <div class="m-sec">Who can help &middot; referrals</div>
+      <div class="m-refs">
+        ${s.referrals.map(r=>`<a class="m-ref" href="#" onclick="return false;"><span style="flex:1;"><span class="m-rn">${r.name}</span><span class="m-rd">${r.detail}</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cfe0d8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>`).join('')}
       </div>
       <div class="m-sec">Documents &amp; resources</div>
       <div class="m-resgrid">
@@ -481,15 +514,36 @@ function openStep(i){
       <div class="m-terms">
         ${s.glossary.map(g=>`<div class="m-term"><span class="m-taz">A</span><div><span class="m-tterm">${g.term}</span><span class="m-tdef">${g.def}</span></div></div>`).join('')}
       </div>
-      <div class="m-sec">Who can help &middot; referrals</div>
-      <div class="m-refs">
-        ${s.referrals.map(r=>`<a class="m-ref" href="#" onclick="return false;"><span style="flex:1;"><span class="m-rn">${r.name}</span><span class="m-rd">${r.detail}</span></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cfe0d8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>`).join('')}
-      </div>
       <div class="m-foot">General information only &mdash; not legal advice. For advice about your case, speak to duty counsel or a lawyer.</div>
     </div>`;
   $('.m-close', modal).addEventListener('click', closeStep);
   overlay.hidden = false;
   document.body.style.overflow = 'hidden';
+
+  /* sequential section animations */
+  requestAnimationFrame(()=>{
+    // m-top header: already animated by scModalIn on .modal
+    // collect animate targets in order
+    const body = modal.querySelector('.m-body');
+    if(!body) return;
+    const nodes = Array.prototype.slice.call(body.children);
+    // "What this means" paragraphs (.m-para) → fade only
+    // everything else → fade+rise
+    nodes.forEach(n => n.classList.add('md-anim'));
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce){ nodes.forEach(n=>{ n.classList.add('md-fade'); n.style.animationDelay='0s'; }); return; }
+    let delay = 120; // start after modal entrance
+    nodes.forEach(n => {
+      const isPara = n.classList.contains('m-para') || n.classList.contains('m-sec') && n.nextElementSibling && n.nextElementSibling.classList.contains('m-para');
+      // treat the "What this means" block (m-sec label + m-para siblings) as fade-only
+      // everything else (who can help, resources, terms, footer) as rise
+      const isMeaning = n.classList.contains('m-para') ||
+        (n.classList.contains('m-sec') && n.textContent.trim().toLowerCase().startsWith('what'));
+      n.classList.add(isMeaning ? 'md-fade' : 'md-rise');
+      n.style.animationDelay = delay + 'ms';
+      delay += isMeaning ? 80 : 110;
+    });
+  });
 }
 function closeStep(){ overlay.hidden = true; document.body.style.overflow=''; }
 overlay.addEventListener('click', e=>{ if(e.target===overlay) closeStep(); });
@@ -533,6 +587,20 @@ input.addEventListener('blur', ()=>{ blurTimer=setTimeout(()=>{ dropdown.hidden=
     card:  r.querySelector('.tl-card'),
     line:  r.querySelector('.tl-line')
   }));
+
+  /* pre-compute exact line heights: from bottom of current badge to top of next badge */
+  function setLineHeights(){
+    const badges = items.map(it => it.badge).filter(Boolean);
+    for(let i = 0; i < badges.length - 1; i++){
+      if(!items[i].line) continue;
+      const cur  = badges[i].getBoundingClientRect();
+      const next = badges[i+1].getBoundingClientRect();
+      const h = next.top + next.height/2 - (cur.top + cur.height/2) - cur.height/2;
+      items[i].line.style.setProperty('--line-h', Math.max(0, h) + 'px');
+    }
+  }
+  setLineHeights();
+  window.addEventListener('resize', setLineHeights, {passive:true});
   const showAll = ()=> items.forEach(it=>{
     it.badge && it.badge.setAttribute('data-rv','');
     it.card  && it.card.setAttribute('data-rv','');
